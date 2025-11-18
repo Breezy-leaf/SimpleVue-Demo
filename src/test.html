@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.net/vue/3.2.36/vue.global.min.js"></script>
+</head>
+
+<body>
+    <!-- <div id="helloworld-vue">
+        {{message}}
+    </div> -->
+    <!-- <script>
+        const hellofunction = Vue.createApp({
+            data() {
+                return {
+                    message: 'Hello'
+                }
+            }
+        });
+        hellofunction.mount('#helloworld-vue')
+
+        
+    </script> -->
+
+    <!-- <script>
+        const hellofunction = {
+            data() {
+                return {
+                    message: '你好'
+                }
+            }
+        }
+        Vue.createApp(hellofunction).mount('#helloworld-vue')
+    </script> -->
+
+
+    <!-- <div id="app">
+        <p>{{reverseMessage}}</p>
+    </div>
+    <script type="module">
+        const app = Vue.createApp({
+            data() {
+                return {
+                    message: 'Hello-World!'
+                }
+            }, computed: {
+                reverseMessage() {
+                    return this.message.split('').reverse().join('')
+                }
+            }
+        });
+        app.mount('#app')
+    </script> -->
+    <!-- <div id="app">
+        <button @click="count++">{{count}}</button>
+    </div>
+    <script>
+        const { createApp, ref } = Vue;
+        const app = createApp({
+            setup() {
+                const count = ref(0);
+                function increment() {
+                    count.value++;
+                }; return { count, increment };
+            }
+        });
+        app.mount('#app')
+    </script> -->
+
+    <!-- <div id="app">
+        <button @click="greet">Greet</button>
+    </div>
+    <script>
+        Vue.createApp({
+            methods: {
+                greet() {
+                    alert('Hello')
+                }
+            }
+        }).mount('#app')
+    </script> -->
+
+    <!-- <div id="app">
+        <p>{{reverseMessage}}</p>
+    </div>
+    <script type="module">
+        Vue.createApp({
+            data() {
+                return {
+                    message: 'HelloWorld!'
+                }
+            }, computed: {
+                reverseMessage() {
+                    return this.message.split('').reverse().join('')
+                }
+            }
+        }).mount('#app')
+    </script> -->
+
+    <!-- <div id="app">
+        <blog-post title="My journey with vue"></blog-post>
+    </div>
+    <script type="module">
+        const app = Vue.createApp({
+            //createApp需要定义，所以应该是Vue.createApp
+            data() {
+                return {};
+            }
+        });
+        app.component('blog-post', {
+            props: ['title'],
+            template: '<h1>{{title}}</h1>'
+        });
+        app.mount('#app');
+    </script> -->
+
+
+
+
+</body>
+
+</html>

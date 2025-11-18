@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/4.2.4/vue-router.global.min.js"></script>
+    <style>
+        .class1 {
+            background-color: #ff0000;
+            color: #00ff0d;
+        }
+
+        .active {
+            width: 100px;
+            height: 100px;
+            background: green;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- <div id="app">
+        <a :href="url">点我</a>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    url: 'https://www.runoob.com'
+                }
+            }
+        });
+        app.mount('#app')
+    </script> -->
+
+    <!-- <div id="app">
+        <p v-if="visibility">这段文本可见</p>
+        <button @click="switchVisibility">切换</button>
+    </div>
+    <script>
+        const visibility = Vue.createApp({
+            data() {
+                return {
+                    visibility: true
+                }
+            }, methods: {
+                switchVisibility() {
+                    this.visibility = !this.visibility;
+                    //普通函数的this指向vue实例对象
+                }
+            }
+        });
+        visibility.mount('#app')
+    </script> -->
+    <!-- 渲染列表 -->
+    <!-- <div id="app">
+        <ul>
+            <li v-for="item in items" :key="item.id">{{item.text}}</li>
+        </ul>
+    </div>
+    <script>
+        const itemlist = Vue.createApp({
+            data() {
+                return {
+                    items: [{ id: 1, text: 'A' }
+                        , { id: 2, text: 'A' }
+                        , { id: 3, text: 'A' }
+                        , { id: 4, text: 'A' }
+                        , { id: 5, text: 'A' }]
+                }
+            }
+        });
+        itemlist.mount('#app')
+    </script> -->
+
+    <!-- 双向绑定 -->
+    <!-- <div id="app">
+        <p>你输入了：<input type="text" v-model="message"></p>
+        <p>你输入了：{{message}}</p>
+    </div>
+    <script>
+        const DoubleMessage = Vue.createApp({
+            data() {
+                return {
+                    message: ''
+                }
+            }
+        });
+        DoubleMessage.mount('#app')
+    </script> -->
+    <!-- 事件处理 -->
+    <!-- <div id="app">
+        <button @click="increment">count:{{count}}</button>
+    </div>
+    <script>
+        const addcount = {
+            data() {
+                return {
+                    count: 0
+                }
+            }, methods: {
+                increment() {
+                    this.count += 1;
+                }
+            }
+        };
+        Vue.createApp(addcount).mount('#app')
+    </script> -->
+
+    <!-- 计算属性 -->
+    <!-- 实现输入金额，点击后计算税后金额 -->
+    <!-- <div id="app">
+        <p>请输入金额：<input type="text" v-model="account"></p>
+        <p>taxRate:{{taxRate}}</p>
+        <button @click="computedTax">计算</button>
+        <p>税后金额是：{{finalAccount}}</p>
+    </div>
+    <script>
+        const taxAccount = Vue.createApp({
+            data() {
+                return {
+                    account: '',
+                    taxRate: 1.1,
+                    finalAccount: 0
+                }
+            }, methods: {
+                computedTax() {
+                    this.finalAccount = this.account * this.taxRate
+                }
+            }
+        });
+        taxAccount.mount('#app')
+    </script> -->
+    <!-- 在输入框中输入任务，点击后添加到列表中，事件复选框表明事件是否完成，点击按钮删除该事件 -->
+    <!-- 隐藏已完成的时间，展示所有 -->
+
+    <!-- <div id="app">
+        <form action="submit" @submit.prevent="addItem">
+            <input type="text" v-model="todo">
+            <button>提交</button>
+        </form>
+        <ul>
+            <li v-for="item in filteredItems" :key="item.id">
+                <input type="checkbox" v-model="item.done">
+                {{item.text}}
+                <button @click="delateItem(item)">删除事件</button>
+            </li>
+        </ul>
+        <button @click="confirmItem = !confirmItem">{{confirmItem? 'showAll':'hide'}}</button>
+    </div>
+    <script>
+        let id = 0;
+        const listapp = Vue.createApp({
+            data() {
+                return {
+                    confirmItem: false,
+                    todo: '',
+                    items: [{ id: id++, text: 'Java', done: true },
+                    { id: id++, text: 'C#', done: false },
+                    { id: id++, text: 'php', done: true },
+                    { id: id++, text: 'C', done: false },]
+                }
+            }, methods: {
+                addItem() {
+                    this.items.push({ id: id++, text: this.todo, done: false })
+                    this.todo = ""
+                }, delateItem(item) {
+                    this.items = this.items.filter((t) => t !== item)
+                }
+
+            }, computed: {
+                filteredItems() {
+                    return this.confirmItem ?
+                        this.items.filter((t) => !t.done) : this.items
+                }
+            }
+        });
+        listapp.mount('#app')
+    </script> -->
+
+
+    <!-- 实现点击某按钮，隐藏p标签中的内容 -->
+    <!-- <div id="hello-vue">
+        <p v-show="show">点击按钮后消失</p>
+        <button @click="show =!show">按钮</button>
+    </div>
+    <script>
+        const sayHello = Vue.createApp({
+            data() {
+                return {
+                    show: true
+                }
+            }
+        });
+        sayHello.mount('#hello-vue')
+    </script> -->
+
+    <!-- 使用v-html使插入的文本背景变为红色 -->
+    <!-- <div id="app">
+        <p v-html="rawhtml"></p>
+        <button @click="changeColor">点击</button>
+    </div>
+    <script>
+        const changeBgc = Vue.createApp({
+            data() {
+                return {
+                    rawhtml: '点击按钮后，这段文字背景变成红色'
+                }
+            }, methods: {
+                changeColor() {
+                    this.rawhtml = '<span style="background-color:red">点击按钮后，这段文字的背景变为红色</span>'
+                }
+            }
+        });
+        changeBgc.mount('#app')
+    </script> -->
+
+    <!--  判断use的值，如果为true使用class1类的样式，否则不使用-->
+    <!-- 点击复选框使文本变换颜色 -->
+    <!-- checkbox默认值（未点击状态）默认为false，点击后变为true -->
+    <!-- use为false时：<div class="">:class</div> -->
+    <!-- use为true时：<div class="class1">:class</div> -->
+    <!-- <div id="app">
+        <label for="r1">修改颜色</label>
+        <input type="checkbox" id="r1" v-model="use">
+        <br>
+
+        <div :class="{class1:use}">:class</div>
+
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    use: false
+                }
+            }
+        });
+        app.mount('#app')
+    </script> -->
+
+    <!-- 如上类似，当v-if为真的时才会显示 -->
+    <!-- <div id="app">
+        <p v-if="however">当为真时才能看见</p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    however: true
+                }
+            }
+        })
+        app.mount('#app')
+    </script> -->
+
+    <!-- v-if可以渲染多个元素，使用template标签包裹，最终的渲染效果不包括<template> -->
+    <!-- <div id="app">
+        <template v-if="show">
+            <p>Look</p>
+            <p>Watch</p>
+            <p>Read</p>
+        </template>
+    </div>
+    <script>
+        const eye = {
+            data() {
+                return {
+                    show: true
+                }
+            }
+        }
+        Vue.createApp(eye).mount('#app')
+    </script> -->
+
+    <!-- 随机生成一个数字，判断是否大于0.5 -->
+    <!-- 注意p标签不能嵌套p标签 -->
+    <!-- {{}}只用于插值表达式显示数据 -->
+    <!-- <div id="app">
+        <div>
+            <p>随机生成的数是：{{a}},它<span v-if="a>0.5">大于0.5</span>
+                <span v-else="a<0.5">小于0.5</span>
+            </p>
+        </div>
+    </div>
+    <script>
+        const randomNumber = {
+            data() {
+                return {
+                    a: Math.random()
+                }
+            }
+        }
+        Vue.createApp(randomNumber).mount('#app')
+    </script> -->
+
+    <!-- v-for实现迭代效果 -->
+    <!-- <div id="app">
+        <template v-for="item in items" :key="item.id">
+            <li>{{item.text}}</li>
+            <li>-------</li>
+        </template>
+    </div>
+    <script>
+        let id = 0
+        const showLabel = Vue.createApp({
+            data() {
+                return {
+                    items: [{ id: 1, text: 'Apple' },
+                    { id: 2, text: 'Banana' },
+                    { id: 3, text: 'orange' },
+                    { id: 4, text: 'watermelon' }]
+                }
+            }
+        });
+        showLabel.mount('#app')
+    </script> -->
+
+    <!-- 使用第三个参数作为键名 -->
+    <!-- <div id="app">
+        <ul>
+            <li v-for="(value,key,index) in object">
+                {{key}}:{{value}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        const test2 = Vue.createApp({
+            data() {
+                return {
+                    object: {
+                        name: 'apple',
+                        url: 'www.apple.com',
+                        slogan: 'just do it'
+                    }
+                }
+            }
+        });
+        test2.mount('#app')
+    </script> -->
+
+    <!-- <div id="app">
+        <select @change="selectOption" v-model="beganOption">
+            <option v-for="option in options" :key="option.id">
+                {{option.text}}
+            </option>
+        </select>
+        <div>
+            <p>你选中了{{beganOption}}</p>
+        </div>
+    </div>
+    <script>
+        let id = 0;
+        const app = {
+            data() {
+                return {
+                    beganOption: 'C#',
+                    options: [{ id: id++, text: 'python' }, { id: id++, text: 'C' }
+                        , { id: id++, text: 'C#' }, { id: id++, text: 'Java' }]
+                }
+            }, methods: {
+                selectOption() {
+                    alert("你选中了" + this.beganOption)
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app')
+    </script> -->
+
+    <!-- 重写：实现在多选栏中选中某个选项，显示该选项，并弹出 -->
+    <!-- <div id="app">
+        <select @change="changeOption" v-model="beganOption">
+            <option v-for="item in items" :key="item.id">
+                {{item.name}}
+            </option>
+        </select>
+        <p>你选择了{{beganOption}}</p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    beganOption: 'C',
+                    items: [{ id: 1, name: 'C' }, { id: 2, name: 'C#' }, { id: 3, name: 'Java' }, { id: 4, name: 'Python' }]
+                }
+            }, methods: {
+                changeOption() {
+                    alert("你选择了" + this.beganOption)
+                }
+            }
+        });
+        app.mount('#app')
+    </script> -->
+
+    <!-- 复习todolist -->
+    <!-- 添加事件、删除事件、隐藏完成事件、展示所有事件 -->
+    <!-- <div id="app">
+        <form @submit.prevent="addItem">
+            <input type="text" v-model="newItem">
+            <button>点击提交</button>
+        </form>
+        <ul>
+            <li v-for="item in filteredItem" :key="item.id">
+                <input type="checkbox" v-model="item.done">
+                {{item.text}}
+                <button @click="delateItem(item)">删除</button>
+            </li>
+        </ul>
+        <button @click="hideItem = !hideItem">{{hideItem ? 'showAll' : 'hide Item'}}</button>
+    </div>
+    <script>
+        let id = 0;
+        const app = Vue.createApp({
+            data() {
+                return {
+                    hideItem: false,
+                    newItem: '',
+                    items: [{ id: id++, text: 'java', done: false }, { id: id++, text: 'C', done: false },
+                    { id: id++, text: 'Python', done: true }, { id: id++, text: 'C#', done: false }]
+                }
+            }, methods: {
+                addItem() {
+                    // 新增项应包含 done 字段，默认未完成
+                    this.items.push({ id: id++, text: this.newItem, done: false })
+                    // 清空输入框
+                    this.newItem = ""
+                }, delateItem(item) {
+                    this.items = this.items.filter((t) => t != item)
+                }
+            }, computed: {
+                filteredItem() {
+                    return this.hideItem ?
+                        this.items.filter((t) => !t.done) : this.items
+                }
+            }
+        });
+        app.mount('#app')
+    </script> -->
+    <!-- 注册一个全局组件 -->
+    <!-- <div id="app"></div>
+    <script>
+        const app = Vue.createApp({
+
+        });
+        app.component('runoob', {
+
+        });
+        app.mount('#app')
+
+    </script> -->
+    <!-- <div id="app">
+        <button @click="count++">你点击了：{{count}}次</button>
+    </div>
+    <script>
+        const appCount = {
+            data() {
+                return {
+                    count: 0
+                }
+            }
+        }
+        Vue.createApp(appCount).mount('#app')
+
+    </script> -->
+
+    <!-- 通过组件点击使按钮+1 -->
+    <!-- 通过 const app={}创建应用时再绑定注册时为普通对象，没有component组件 -->
+    <!-- 注意全局注册与局部注册的区别 -->
+    <!-- 此处为全局注册app.conponent{} -->
+    <!-- <div id="app">
+        <button-count></button-count>
+    </div>
+    <script>
+        const app = Vue.createApp({
+
+        });
+        app.component('button-count', {
+            data() {
+                return {
+                    count: 0
+                }
+            }, template: `<button @click="count++">点击了{{count}}次</button>`
+        })
+        app.mount('#app')
+    </script> -->
+
+
+
+    <!-- 当mount在全局组件与应用中间时页面无法正常显示：这是一个执行顺序的问题，vue在挂载时扫描html，发现
+      button-count标签，查找组件库，发现找不到（还没注册）报错：Failed to resolve component: button-count-->
+    <!-- <div id="app">
+        <button-count>组件的复用</button-count>
+        <button-count>组件的复用</button-count>
+        <button-count>组件的复用</button-count>
+    </div>
+    <script>
+        const app = Vue.createApp({
+
+        })
+        app.component('button-count', {
+            data() {
+                return {
+                    count: 0
+                }
+            }, template: `<button @click="count++">你点击了：{{count}}</button>`
+        })
+        app.mount('#app')
+    </script> -->
+
+    <!-- 局部组件 -->
+    <!-- vue会自动转换组件名，在js中使用驼峰命名中，会转换，比如上述，注册子组件时使用Button-Count时按钮不生效 -->
+    <!-- 单文件形式需要只是在原来基础上import -->
+    <!-- 使用驼峰命名法对组件进行命名！！！ -->
+    <!-- <div id="app">
+        <child-comp></child-comp>
+    </div>
+    <script>
+        var ChildComp = {
+            template: '<h1>自定义组件</h>'
+        }
+        const app = Vue.createApp({
+            components: {
+                'ChildComp': ChildComp
+            }
+        });
+        app.mount('#app')
+    </script> -->
+
+    <!-- 单文件形式 -->
+    <!-- 使用单文件组件能够更好地组织和管理 Vue 组件，一个组件通常由三部分组成：模板、脚本和样式。 -->
+
+    <!-- <div id="app">
+        <set-style title="Apple"></set-style>
+        <set-style title="Banana"></set-style>
+        <set-style title="Peatch"></set-style>
+    </div>
+    <script>
+        const app = Vue.createApp({
+
+        });
+        app.component('SetStyle', {
+            props: ['title'],
+            //声明，我接收到了一个title属性
+            template: `<h1>{{title}}</h1>`
+        })
+        app.mount('#app')
+    </script> -->
+
+
+    <!-- 动态props -->
+    <!-- 类似于用 v-bind 绑定 HTML 特性到一个表达式，
+      也可以用 v-bind 动态绑定 props 的值到父组件的数据中。
+      每当父组件的数据变化时，该变化也会传导给子组件： -->
+    <!-- <div id="app">
+        <select-option v-for="item in items" :key="item.id" :id="item.id" :text="item.text"></select-option>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    items: [{ id: 1, text: 'A' }, { id: 2, text: 'B' }, { id: 3, text: 'C' }]
+                }
+            }
+        })
+        app.component('selectOption', {
+            props: ['id', 'text'],
+            template: `<h1>{{id}}-{{text}}</h1>`
+        })
+        app.mount('#app')
+    </script> -->
+    <!-- 注意组件的写法 -->
+
+
+
+    <!-- todo列表 -->
+    <!-- <div id="app">
+        <ul>
+            <form @submit.prevent="addItem">
+                <input type="text" v-model="newItem">
+                <button>提交事件</button>
+            </form>
+            <li v-for="item in whetherDone">
+                <input type="checkbox" v-model="item.done">
+                {{item.text}}
+                <button @click="delateItem(item)">删除事件</button>
+            </li>
+        </ul>
+        <button @click="isCurrentlyDone = !isCurrentlyDone">{{isCurrentlyDone? 'showall':'hide'}}</button>
+    </div>
+    <script>
+        let id = 0;
+        const app = Vue.createApp({
+            data() {
+                return {
+                    newItem: '',
+                    isCurrentlyDone: false,
+                    items: [{ id: id++, text: 'A', done: false }, { id: id++, text: 'B', done: true }
+                        , { id: id++, text: 'A', done: false }, { id: id++, text: 'B', done: true }]
+                }
+            }, methods: {
+                addItem() {
+                    this.items.push({ id: id++, text: this.newItem, done: false })
+                    this.newItem = ""
+                }, delateItem(item) {
+                    //item为当前点击删除的对象，t为数组中的每一项，需过滤掉item=t的情况
+                    //filter是保留为真的基础上创建新数组,因此取反
+                    this.items = this.items.filter((t) => t != item)
+                }
+            }, computed: {
+                whetherDone() {
+                    //隐藏t为true的情况
+                    return this.isCurrentlyDone ? this.items.filter((t) => !t.done) : this.items
+                }
+            }
+        })
+        app.mount('#app')
+    </script> -->
+
+    <!-- 11.3日 -->
+    <!-- 计算属性 -->
+    <!-- 翻转字符 -->
+    <!-- <div id="app">
+        <p>这是翻转之前的字符：{{message}}</p>
+        <p>这是翻转之后的字符：{{ReverseMessage}}</p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    message: 'ReverseMessage!'
+                }
+            }, computed: {
+                ReverseMessage: function () {
+                    return this.message.split('').reverse().join('');
+                }
+            }
+        });
+        app.mount('#app')
+    </script> -->
+
+    <!-- <div id="app">
+
+    </div>
+
+    <script>
+        const app = {
+            data() {
+                return {
+                    name: 'Google',
+                    url: 'https://www.google.com'
+                }
+            },
+            computed: {
+                site: {
+                    // getter
+                    get: function () {
+                        return this.name + ' ' + this.url
+                    },
+                    // setter
+                    set: function (newValue) {
+                        var names = newValue.split(' ')
+                        this.name = names[0]
+                        this.url = names[names.length - 1]
+                    }
+                }
+            }
+        }
+        vm = Vue.createApp(app).mount('#app')
+        document.write('name: ' + vm.name);
+        document.write('<br>');
+        document.write('url: ' + vm.url);
+        document.write('<br>------ 更新数据 ------<br>');
+        // 调用 setter， vm.name 和 vm.url 也会被对应更新
+        vm.site = '菜鸟教程 https://www.runoob.com';
+        document.write('name: ' + vm.name);
+        document.write('<br>');
+        document.write('url: ' + vm.url);
+    </script> -->
+    <!-- 可以用 methods 来替代 computed，效果上两个都是一样的，但是 computed 是基于它的依赖缓存，
+     只有相关依赖发生改变时才会重新取值。而使用 methods ，在重新渲染的时候，函数总会重新调用执行。-->
+
+    <!-- 例子 -->
+    <!-- 设置一个计时器 -->
+    <!-- 一个标签显示目前时间，点击按钮后记录过了多长时间 -->
+    <!-- <div id="app">
+        <span>现在时间是：{{ formatTime(Now) }}</span>
+        <button @click="startTiming">开始/继续</button>
+        <button @click="stopTiming">停止</button>
+        <p>已经过了：{{ elapsedSeconds }} 秒</p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    Now: Date.now(),
+                    // elapsedMs 用于内部以毫秒计数，显示时转换为秒
+                    startTime: null,
+                    elapsedMs: 0,
+                    timerId: null,
+                    running: false
+                }
+            },
+            computed: {
+                // 以秒为单位显示，保留一位小数
+                elapsedSeconds() {
+                    return (this.elapsedMs / 1000).toFixed(1);
+                }
+            },
+            methods: {
+                startTiming() {
+                    if (this.running) return; // 已在运行则不重复启动
+                    // 支持从已暂停状态继续：起始时间需要减去已过去的毫秒数
+                    this.startTime = Date.now() - this.elapsedMs;
+                    this.timerId = setInterval(() => {
+                        this.elapsedMs = Date.now() - this.startTime;
+                    }, 100);
+                    this.running = true;
+                },
+                stopTiming() {
+                    if (this.timerId) {
+                        clearInterval(this.timerId);
+                        this.timerId = null;
+                    }
+                    this.running = false;
+                    // 保持 elapsedMs 值（已停留的时间）
+                },
+                formatTime(timestamp) {
+                    // 将时间戳格式化为可读的时间字符串
+                    return new Date(timestamp).toLocaleTimeString();
+                }
+            },
+            mounted() {
+                // 每隔一秒更新this.Now的值
+                setInterval(() => {
+                    this.Now = Date.now();
+                }, 1000);
+            }
+        });
+        app.mount('#app')
+    </script> -->
+
+    <!-- <div id="app">
+        <p>计数器：{{counter}}</p>
+        <button @click="counter++">点击</button>
+    </div>
+    <script>
+        const app = {
+            data() {
+                return {
+                    counter: 1
+                }
+            }
+        };
+        const vm = Vue.createApp(app).mount('#app')
+        vm.$watch('counter', function (nval, oval) {
+            alert('counter从' + oval + '变为了' + nval)
+        });
+    </script> -->
+
+
+    <!-- 实现从千米到米的双向换算 -->
+    <!-- <div id="app">
+        千米 : <input type="text" v-model="kilometers" @focus="currentlyActiveField = 'kilometers'">
+        米 : <input type="text" v-model="meters" @focus="currentlyActiveField = 'meters'">
+    </div>
+    <p id="info"></p>
+    <script>
+        const app = {
+            data() {
+                return {
+                    kilometers: 0,
+                    meters: 0
+                }
+            },
+            watch: {
+                kilometers: function (newValue, oldValue) {
+                    // 判断是否是当前输入框
+                    if (this.currentlyActiveField === 'kilometers') {
+                        this.meters = newValue * 1000
+                    }
+                },
+                meters: function (newValue, oldValue) {
+                    // 判断是否是当前输入框
+                    if (this.currentlyActiveField === 'meters') {
+                        this.kilometers = newValue / 1000;
+                    }
+                }
+            }
+        }
+        vm = Vue.createApp(app).mount('#app')
+        vm.$watch('kilometers', function (newValue, oldValue) {
+            // 这个回调将在 vm.kilometers 改变后调用
+            document.getElementById("info").innerHTML = "修改前值为: " + oldValue + "，修改后值为: " + newValue;
+        })
+    </script> -->
+
+    <!-- 千米和米的相互转化 -->
+    <!-- <div id="app">
+        <input type="text" v-model="kilometers" @focus="isCurrentlyActiveField='kilometers'">
+        <input type="text" v-model="meters" @focus="isCurrentlyActiveField='meters'">
+        <p id="info"></p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    kilometers: '',
+                    meters: ''
+                }
+            }, watch: {
+                kilometers(newValue, oldValue) {
+                    if (this.isCurrentlyActiveField = 'kilometers') {
+                        return this.meters = newValue * 1000
+                    }
+                }, meters(newValue, oldValue) {
+                    if (this.isCurrentlyActiveField = 'meters') {
+                        return this.kilometers = newValue / 1000
+                    }
+                }
+            }
+        })
+        vm = app.mount('#app')
+        vm.$watch('kilometers', function (newValue, oldValue) {
+            document.getElementById('info').textContent = '值从' + oldValue + '变为了' + newValue
+        })
+    </script> -->
+
+    <!-- js版本 -->
+    <!-- <button id="btn">获取数据</button>
+    <pre id="result"></pre>
+
+    <script>
+        document.getElementById('btn').onclick = async function () {
+            //我说：你（网站）把一个东西放在桌子（res）上，我把它装（json（））进口袋（data）里
+            const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+            const data = await res.json();
+
+            document.getElementById('result').innerText = JSON.stringify(data, null, 2)
+        }
+    </script> -->
+
+    <!-- 页面加载就获取
+    <div id="app">
+        <button @click="getsmile">获取数据</button>
+        <pre v-if="result">{{result}}</pre>
+        <p v-else>Loading</p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    result: ''
+                }
+            }, methods: {
+                async getsmile() {
+                    const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+                    const te = await res.json();
+                    this.result = te
+                }
+            }, mounted() {//mounted:dom渲染完成后执行
+                this.getsmile()
+            }
+        });
+        app.mount('#app')
+    </script> -->
+
+    <!-- 点击后获取 -->
+    <!-- <div id="app">
+        <p>ID:<input type="number" v-model.number="id" min="1" max="10"></p>
+        <button @click="id++">下一个</button>
+        <pre v-if="result">{{result}}</pre>
+        <p v-else>Loading</p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    result: '',
+                    id: 1
+                }
+            }, methods: {
+                async getSmile() {
+                    const res = await fetch(`https://jsonplaceholder.typicode.com/todos/${this.id}`)
+                    this.result = await res.json();
+                }
+            }, mounted() {
+                this.getSmile();
+            }, watch: {
+                id() {
+                    this.getSmile();
+                }
+            }
+        });
+        app.mount('#app')
+    </script> -->
+
+    <!-- 千米和米的双向互换 -->
+    <!-- <div id="app">
+        <input type="text" @focus="isCurrentlyActive ='kilometers'" v-model="kilometers">
+        <input type="text" @focus="isCurrentlyActive ='meters'" v-model="meters">
+        <p id="btn"></p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    kilometers: "",
+                    meters: "",
+                    isCurrentlyActive: ""
+                }
+            }, watch: {
+                kilometers: function (newValue, oldValue) {
+                    if (this.isCurrentlyActive === 'kilometers') {
+                        this.meters = newValue * 1000
+                        //newValue 是函数参数，不是 this 的属性
+                    }
+                }, meters: function (newValue, oldValue) {
+                    if (this.isCurrentlyActive === 'meters') {
+                        this.kilometers = newValue / 1000
+                    }
+                }
+            }
+        })
+        vm = app.mount('#app')
+        vm.$watch('meters', function (newValue, oldValue) {
+            document.getElementById('btn').textContent = '值从' + oldValue + '变味了' + newValue
+        })
+    </script> -->
+    <!-- 11.16样式绑定 -->
+    <!-- <style>
+        .Active {
+            width: 300px;
+            height: 500px;
+            background-color: #ff0000;
+        }
+    </style>
+    <div id="app">
+        <div :class="{'Active':isActive}"></div>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    isActive: true
+                }
+            }
+        });
+        app.mount('#app')
+    </script> -->
+    <!-- 传入多个属性来动态切换类 -->
+    <!-- <style>
+        .static {
+            width: 200px;
+            height: 400px;
+            background-color: #ff0000;
+        }
+
+        .one {
+            width: 400px;
+            height: 900px;
+            background-color: antiquewhite;
+        }
+
+        .two {
+            width: 300px;
+            height: 200px;
+            background-color: aqua;
+        }
+    </style>
+    <div id="app">
+        <div class="static" :class="{'one':isOne},{'two':isTwo}"></div>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    isOne: true,
+                    isTwo: true
+                    //当强行绑定多个属性时，同时为true时显示了最后一个的样式
+                }
+            }
+        })
+        app.mount('#app')
+    </script> -->
+    <!-- 还可以这么写 -->
+    <!-- <style>
+        .static {
+            width: 200px;
+            height: 100px;
+            background-color: #ff0000;
+        }
+
+        .one {
+            width: 500px;
+            height: 100px;
+            background-color: aqua;
+        }
+
+        .two {
+            width: 500px;
+            height: 100px;
+            background-color: rgb(255, 0, 128);
+        }
+    </style>
+    <div id="app">
+        <div class="ststic" :class="done"></div>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    done: {
+                        'one': true,
+                        'two': true
+                    }
+                }
+            }
+        })
+        app.mount('#app')
+    </script> -->
+
+    <!-- 把一个数组传给 v-bind:class -->
+    <!-- <style>
+        .static {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        .one {
+
+            background-color: #00ff0d;
+        }
+
+        .two {
+            background-color: aqua;
+        }
+    </style>
+    <div id="app">
+        <div class="static" :class="[activeClass,errorClass]"></div>
+    </div>
+    <script>
+        const app = {
+            data() {
+                return {
+                    activeClass: 'one',
+                    errorClass: 'two'
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app')
+    </script> -->
+
+    <!-- Vue.js style(内联样式)-->
+    <!-- <div id="app">
+        <div :style="{color:activeColor,fontSize:fontSize+'px'}">100</div>
+    </div>
+    <script>
+        const app = {
+            data() {
+                return {
+                    activeColor: 'red',
+                    fontSize: 100
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app')
+    </script> -->
+
+    <!-- 使用数组将多个对象绑定到一个元素上 -->
+    <!-- <div id="app">
+        <div :style="[one,two]">使用数组将多个对象绑定到一个元素上</div>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    one: {
+                        fontSize: '100px',
+                    }, two: {
+                        color: 'red'
+                    }
+                }
+            }
+        });
+        app.mount('#app')     
+    </script> -->
+    <!-- 组件上使用class属性时 -->
+    <!-- <div id="app">
+        <set-class class="classA classB">
+
+        </set-class>
+    </div>
+    <script>
+        const app = Vue.createApp({
+
+        })
+        app.component('setClass', {
+            template: `<h1 class="classC classD">组件上使用class属性</h1>`
+        });
+        app.mount('#app')
+    </script> -->
+    <!-- 事件处理 -->
+    <!-- <div id="app">
+        <button @click="Add">点击</button>
+        <p>点击了{{count}}</p>
+    </div>
+    <script>
+        const app = {
+            data() {
+                return {
+                    count: 0
+                }
+            }, methods: {
+                Add() {
+                    this.count = count++
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app')
+    </script> -->
+
+    <!-- 使用一个方法来调用 JavaScript 方法 -->
+    <!-- <div id="app">
+        <button @click="greet">点击</button>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    name: 'world'
+                }
+            }, methods: {
+                greet() {
+                    alert('hello' + this.name + '!')
+                    if (event) {
+                        alert(event.target.tagName)
+                    }
+                }
+            }
+        });
+        app.mount('#app')
+    </script> -->
+
+    <!-- 使用内联js语句 -->
+    <!-- 传递的是变量，所以需要加单引号 -->
+    <!-- <div id="app">
+        <button @click="say('hello')">点击</button>
+        <button @click="say('what')">点击2</button>
+        
+    </div>
+    <script>
+        const app = {
+            data() {
+                return {
+
+                }
+            }, methods: {
+                say(message) {
+                    alert(message)
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app')
+    </script> -->
+
+    <!-- 当传递的是变量时不需要加单引号 -->
+    <!-- <div id="app">
+        <button @click="greet(hello)">点击</button>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    hello: 'hello world'
+                }
+            }, methods: {
+                greet(message) {
+                    alert(message)
+                }
+            }
+        })
+        app.mount('#app')
+    </script> -->
+
+    <!-- 事件处理中传入多个方法，使用$event -->
+    <!-- <div id="app">
+        <button @click="one($event),two($event)">点击</button>
+    </div>
+    <script>
+        const app = {
+            data() {
+                return {
+
+                }
+            }, methods: {
+                one(event) {
+                    alert('秋天')
+                }, two(event) {
+                    alert('傍晚')
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app')
+    </script> -->
+    <!-- 使用v-model实现input的双向绑定 -->
+    <!-- <div id="app">
+        <input type="text" v-model="text1">
+        <p>{{text1}}</p>
+        <textarea v-model="text2"></textarea>
+        <p>{{text2}}</p>
+    </div>
+    <script>
+        const app = {
+            data() {
+                return {
+                    text1: '',
+                    text2: ''
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app')
+    </script> -->
+    <!-- 复选框的双向数据绑定 -->
+    <!-- <div id="app">
+        <p>单个复选框</p>
+        <input type="checkbox" id="one" v-model="checked">
+        <label for="one">{{checked}}</label> -->
+    <!-- input通过label for绑定后点击文字部分也能实现选中 -->
+    <!-- label标签之间的值是显示在页面上的 -->
+    <!-- 点击那个复选框，将值添加入双向绑定的数组中，id是用来与for绑定的 -->
+    <!-- <p>多个复选框</p>
+        <input type="checkbox" id="two" value="1" v-model="checkedName">
+        <label for="two">Option1</label>
+        <input type="checkbox" id="three" value="2" v-model="checkedName">
+        <label for="three">Option2</label>
+        <input type="checkbox" id="four" value="3" v-model="checkedName">
+        <label for="four">O</label>
+        <p>{{checkedName}}</p>
+    </div>
+    <script>
+        const app = {
+            data() {
+                return {
+                    checkedName: [],
+                    checked: false
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app')
+    </script> -->
+
+    <!-- 单选按钮的双向数据绑定 -->
+    <!-- <div id="app">
+        <input type="radio" id="O1" value="Banana" v-model="picked">
+        <label for="O1">Banana</label>
+        <br>
+        <input type="radio" id="o2" value="Apple" v-model="picked">
+        <label for="o2">Apple</label>
+        <br>
+        <span>你选择的是：{{picked}}</span>
+    </div>
+    <script>
+        const app = {
+            data() {
+                return {
+                    picked: ''
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app')
+    </script> -->
+
+    <!-- select的双向绑定 -->
+    <!-- <div id="app">
+        <select name="" id="" v-model="picked" multiple>
+            <option value="">请下拉列表选择一个网站：</option>
+            <option value="www.baidu.com">百度</option>
+            <option value="www.google.com">谷歌</option>
+        </select>
+        //返回的是值
+        <p>你选择的网址是：{{picked}}</p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    picked: ''
+                }
+            }
+        })
+        app.mount('#app')
+    </script> -->
+
+    <!-- 使用v-for循环输出选项 -->
+    <!-- <div id="app">
+        <select name="" id="" v-model="selected">
+            //双向绑定意味着，slect元素的初始值会尝试设置为selected的当前值
+            //当用户改变选项时，Vue会自动更新data（）中的selected
+            <option v-for="op in ops" :value="op.value">{{op.text}}</option>
+        </select>
+        <p>该信息的网址是：{{selected}}</p>
+    </div>
+    <script>
+        const app = {
+            data() {
+                return {
+                    selected: 'www.a.com',
+                    ops: [{ text: 'A', value: 'www.a.com' },
+                    { text: 'B', value: 'www.b.com' },
+                    { text: 'C', value: 'www.c.com' }]
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app')
+    </script> -->
+    <!-- 11.18 自定义指令 -->
+    <!-- 页面加载时，input元素自动获取焦点 -->
+    <!-- <div id="app">
+        <p>页面加载时,input元素自动获取焦点</p>
+        <input type="text" v-focus>
+    </div>
+    <script>
+        const app = Vue.createApp({
+
+        })
+        app.directive('focus', {
+            mounted(el) {
+                el.focus()
+            }
+        })
+        app.mount('#app')
+    </script> -->
+
+    <!-- Vue路由 -->
+    <!-- 通过路由可以实现多视图的单页 Web 应用 -->
+    <div id="app">
+        <h1>Hello App!</h1>
+        <p>
+            <!--使用 router-link 组件进行导航 -->
+            <!--通过传递 `to` 来指定链接 -->
+            <!--`<router-link>` 将呈现一个带有正确 `href` 属性的 `<a>` 标签-->
+            <router-link to="/">Go to Home</router-link>
+            <router-link to="/about">Go to About</router-link>
+        </p>
+        <!-- 路由出口 -->
+        <!-- 路由匹配到的组件将渲染在这里 -->
+        <router-view></router-view>
+    </div>
+
+    <script>
+        // 1. 定义路由组件.
+        // 也可以从其他文件导入
+        const Home = { template: '<div>Home</div>' }
+        const About = { template: '<div>About</div>' }
+
+        // 2. 定义一些路由
+        // 每个路由都需要映射到一个组件。
+        // 我们后面再讨论嵌套路由。
+        const routes = [
+            { path: '/', component: Home },
+            { path: '/about', component: About },
+        ]
+
+        // 3. 创建路由实例并传递 `routes` 配置
+        // 你可以在这里输入更多的配置，但我们在这里
+        // 暂时保持简单
+        const router = VueRouter.createRouter({
+            // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
+            history: VueRouter.createWebHashHistory(),
+            routes, // `routes: routes` 的缩写
+        })
+
+        // 5. 创建并挂载根实例
+        const app = Vue.createApp({})
+        //确保 _use_ 路由实例使
+        //整个应用支持路由。
+        app.use(router)
+
+        app.mount('#app')
+
+        // 现在，应用已经启动了！
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
